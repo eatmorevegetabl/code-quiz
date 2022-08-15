@@ -6,9 +6,14 @@ var answerButtons = document.getElementById('answer-btns');
 var scoreEl = document.getElementById('score');
 var timeEl = document.getElementById('time');
 var questionIndex = 0;
+var secondsLeft = 75;
+var count = localStorage.getItem("count");
+scoreEl.textContent = count;
+
 
 startButton.addEventListener('click', startQuiz);
 answerButtons.addEventListener('click', selectAnswer);
+nextButton.addEventListener('click', nextQuestion);
 
 
 function startQuiz() {
@@ -16,13 +21,15 @@ startButton.classList.add('hide');
 questionContainerEl.classList.remove('hide');
 nextButton.classList.remove('hide');
 scoreEl.classList.remove('hide');
-timeEl.classList.remove('hide')
-nextQuestion()
+timeEl.classList.remove('hide');
+setTime ();
+nextQuestion();
 }
 
 function nextQuestion() {
 var currentQuestion = questions[questionIndex];
   questionEl.textContent = currentQuestion.question
+  questionIndex++;
 }
 
 function selectAnswer(event) {
@@ -31,13 +38,26 @@ function selectAnswer(event) {
   var currentQuestion = questions[questionIndex];
   if (El === 'button1') {
     console.log('it works')
+    count++
   } else {
-    //timer reduces by 15 secs
+    secondsLeft - 15;
   }
 }
 
-function displayQuestion() {
+function setTime() {
+  var timerInterval = setInterval(function() {
+    secondsLeft--;
+    timeEl.textContent = secondsLeft + " seconds left";
 
+    if(secondsLeft === 0) {
+      clearInterval(timerInterval);
+      sendMessage();
+    }
+  }, 1000);
+}
+
+function sendMessage() {
+  timeEl.textContent = "Your score is " + count + "/5";
 }
 
 var questions = [
@@ -78,7 +98,7 @@ var questions = [
       ]
   },
   {
-    question: 'question placeholder 5',
+    question: 'question placeholder Z',
     answers: [
       {text: 'answer placeholder 5.a', correct: false},
       {text: 'answer placeholder 5.b', correct: false},
