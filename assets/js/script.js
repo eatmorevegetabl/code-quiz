@@ -1,16 +1,22 @@
-var startButton = document.getElementById('strt-btn')
-var questionContainerEl = document.getElementById('question-container')
-var questionEl = document.getElementById('question')
-var answerButtons = document.getElementById('answer-btns')
+var startButton = document.getElementById('strt-btn');
+var questionContainerEl = document.getElementById('question-container');
+var questionEl = document.getElementById('question');
+var nextButton = document.getElementById('nxt-btn');
+var answerButtons = document.getElementById('answer-btns');
+var scoreEl = document.getElementById('score');
+var timeEl = document.getElementById('time');
 var questionIndex = 0;
 
-startButton.addEventListener('click', startQuiz)
-answerButtons.addEventListener('click', selectAnswer)
+startButton.addEventListener('click', startQuiz);
+answerButtons.addEventListener('click', selectAnswer);
 
 
 function startQuiz() {
-startButton.classList.add('hide')
-questionContainerEl.classList.remove('hide')
+startButton.classList.add('hide');
+questionContainerEl.classList.remove('hide');
+nextButton.classList.remove('hide');
+scoreEl.classList.remove('hide');
+timeEl.classList.remove('hide')
 nextQuestion()
 }
 
