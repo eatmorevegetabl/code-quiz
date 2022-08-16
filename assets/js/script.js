@@ -7,8 +7,7 @@ var scoreEl = document.getElementById('score');
 var timeEl = document.getElementById('time');
 var questionIndex = 0;
 var secondsLeft = 75;
-var count = localStorage.getItem("count");
-scoreEl.textContent = count;
+var count = 0;
 
 
 startButton.addEventListener('click', startQuiz);
@@ -27,7 +26,8 @@ nextQuestion();
 }
 
 function nextQuestion() {
-var currentQuestion = questions[questionIndex];
+  scoreEl.textContent = count;
+  var currentQuestion = questions[questionIndex];
   questionEl.textContent = currentQuestion.question
   questionIndex++;
 }
@@ -39,8 +39,9 @@ function selectAnswer(event) {
   if (El === 'button1') {
     console.log('it works')
     count++
+
   } else {
-    secondsLeft - 15;
+    timeEl.textContent = secondsLeft - 15;
   }
 }
 
