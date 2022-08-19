@@ -3,6 +3,10 @@ var questionContainerEl = document.getElementById('question-container');
 var questionEl = document.getElementById('question');
 var nextButton = document.getElementById('nxt-btn');
 var answerButtons = document.getElementById('answer-btns');
+var answerButton1 = document.getElementById('button1');
+var answerButton2 = document.getElementById('button2');
+var answerButton3 = document.getElementById('button3');
+var answerButton4 = document.getElementById('button4');
 var scoreEl = document.getElementById('score');
 var timeEl = document.getElementById('time');
 var questionIndex = 0;
@@ -16,20 +20,31 @@ nextButton.addEventListener('click', nextQuestion);
 
 
 function startQuiz() {
-startButton.classList.add('hide');
-questionContainerEl.classList.remove('hide');
-nextButton.classList.remove('hide');
-scoreEl.classList.remove('hide');
-timeEl.classList.remove('hide');
-setTime ();
-nextQuestion();
+  startButton.classList.add('hide');
+  questionContainerEl.classList.remove('hide');
+  nextButton.classList.remove('hide');
+  scoreEl.classList.remove('hide');
+  answerButton1.textContent = questions[questionIndex].answers[0].text;
+  answerButton2.textContent = questions[questionIndex].answers[1].text;
+  answerButton3.textContent = questions[questionIndex].answers[2].text;
+  answerButton4.textContent = questions[questionIndex].answers[3].text;
+  timeEl.classList.remove('hide');
+  setTime();
+  nextQuestion();
 }
 
 function nextQuestion() {
-  scoreEl.textContent = count;
-  var currentQuestion = questions[questionIndex];
-  questionEl.textContent = currentQuestion.question
-  questionIndex++;
+  if (count <= 5) {
+    answerButton1.textContent = questions[questionIndex].answers[0].text;
+    answerButton2.textContent = questions[questionIndex].answers[1].text;
+    answerButton3.textContent = questions[questionIndex].answers[2].text;
+    answerButton4.textContent = questions[questionIndex].answers[3].text;
+
+    scoreEl.textContent = count;
+    var currentQuestion = questions[questionIndex];
+    questionEl.textContent = currentQuestion.question
+    questionIndex++;
+  }
 }
 
 function selectAnswer(event) {
@@ -46,11 +61,11 @@ function selectAnswer(event) {
 }
 
 function setTime() {
-  var timerInterval = setInterval(function() {
+  var timerInterval = setInterval(function () {
     secondsLeft--;
     timeEl.textContent = secondsLeft + " seconds left";
 
-    if(secondsLeft === 0) {
+    if (secondsLeft === 0) {
       clearInterval(timerInterval);
       sendMessage();
     }
@@ -65,46 +80,46 @@ var questions = [
   {
     question: 'question placeholder 1',
     answers: [
-      {text: 'answer placeholder 1.a', correct: true},
-      {text: 'answer placeholder 1.b', correct: false},
-      {text: 'answer placeholder 1.c', correct: false},
-      {text: 'answer placeholder 1.d', correct: false},
-      ]
+      { text: 'answer placeholder 1.a', correct: true },
+      { text: 'answer placeholder 1.b', correct: false },
+      { text: 'answer placeholder 1.c', correct: false },
+      { text: 'answer placeholder 1.d', correct: false },
+    ]
   },
   {
     question: 'question placeholder 2',
     answers: [
-      {text: 'answer placeholder 2.a', correct: false},
-      {text: 'answer placeholder 2.b', correct: true},
-      {text: 'answer placeholder 2.c', correct: false},
-      {text: 'answer placeholder 2.d', correct: false},
-      ]
+      { text: 'answer placeholder 2.a', correct: false },
+      { text: 'answer placeholder 2.b', correct: true },
+      { text: 'answer placeholder 2.c', correct: false },
+      { text: 'answer placeholder 2.d', correct: false },
+    ]
   },
   {
     question: 'question placeholder 3',
     answers: [
-      {text: 'answer placeholder 3.a', correct: false},
-      {text: 'answer placeholder 3.b', correct: false},
-      {text: 'answer placeholder 3.c', correct: false},
-      {text: 'answer placeholder 3.d', correct: true},
-      ]
+      { text: 'answer placeholder 3.a', correct: false },
+      { text: 'answer placeholder 3.b', correct: false },
+      { text: 'answer placeholder 3.c', correct: false },
+      { text: 'answer placeholder 3.d', correct: true },
+    ]
   },
   {
     question: 'question placeholder 4',
     answers: [
-      {text: 'answer placeholder 4.a', correct: false},
-      {text: 'answer placeholder 4.b', correct: false},
-      {text: 'answer placeholder 4.c', correct: true},
-      {text: 'answer placeholder 4.d', correct: false},
-      ]
+      { text: 'answer placeholder 4.a', correct: false },
+      { text: 'answer placeholder 4.b', correct: false },
+      { text: 'answer placeholder 4.c', correct: true },
+      { text: 'answer placeholder 4.d', correct: false },
+    ]
   },
   {
     question: 'question placeholder Z',
     answers: [
-      {text: 'answer placeholder 5.a', correct: false},
-      {text: 'answer placeholder 5.b', correct: false},
-      {text: 'answer placeholder 5.c', correct: false},
-      {text: 'answer placeholder 5.d', correct: true},
-      ]
+      { text: 'answer placeholder 5.a', correct: false },
+      { text: 'answer placeholder 5.b', correct: false },
+      { text: 'answer placeholder 5.c', correct: false },
+      { text: 'answer placeholder 5.d', correct: true },
+    ]
   }
 ]
