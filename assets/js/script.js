@@ -23,10 +23,6 @@ function startQuiz() {
   questionContainerEl.classList.remove('hide');
   scoreEl.classList.remove('hide');
   timeEl.classList.remove('hide');
-  answerButton1.textContent = questions[questionIndex].answers[0].text;
-  answerButton2.textContent = questions[questionIndex].answers[1].text;
-  answerButton3.textContent = questions[questionIndex].answers[2].text;
-  answerButton4.textContent = questions[questionIndex].answers[3].text;
   setTime();
   nextQuestion();
 }
@@ -37,8 +33,7 @@ function nextQuestion() {
     answerButton2.textContent = questions[questionIndex].answers[1].text;
     answerButton3.textContent = questions[questionIndex].answers[2].text;
     answerButton4.textContent = questions[questionIndex].answers[3].text;
-
-    scoreEl.textContent = count;
+    
     var currentQuestion = questions[questionIndex];
     questionEl.textContent = currentQuestion.question
   }
@@ -47,7 +42,8 @@ function nextQuestion() {
 function selectAnswer(event) {
   var El = event.target.getAttribute('id')
   if (questions[questionIndex].answers[El].correct === true) {
-    count++
+    count++;
+    scoreEl.textContent = count;
     nextQuestion;
   } else {
     secondsLeft = secondsLeft - 15;
@@ -60,7 +56,7 @@ function setTime() {
     secondsLeft--;
     timeEl.textContent = secondsLeft + " seconds left";
 
-    if (secondsLeft === 0) {
+    if (secondsLeft <= 0) {
       clearInterval(timerInterval);
       sendMessage();
     }
