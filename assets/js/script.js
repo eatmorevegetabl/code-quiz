@@ -33,9 +33,12 @@ function nextQuestion() {
     answerButton2.textContent = questions[questionIndex].answers[1].text;
     answerButton3.textContent = questions[questionIndex].answers[2].text;
     answerButton4.textContent = questions[questionIndex].answers[3].text;
-    
+
     var currentQuestion = questions[questionIndex];
     questionEl.textContent = currentQuestion.question
+  } else {
+    secondsLeft = 0;
+    sendMessage();
   }
 }
 
