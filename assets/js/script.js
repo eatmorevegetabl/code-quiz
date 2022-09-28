@@ -1,7 +1,6 @@
 var startButton = document.getElementById('strt-btn');
 var questionContainerEl = document.getElementById('question-container');
 var questionEl = document.getElementById('question');
-var nextButton = document.getElementById('nxt-btn');
 var answerButtons = document.getElementById('answer-btns');
 var answerButton1 = document.getElementById('0');
 var answerButton2 = document.getElementById('1');
@@ -16,13 +15,12 @@ var count = 0;
 
 startButton.addEventListener('click', startQuiz);
 answerButtons.addEventListener('click', selectAnswer);
-nextButton.addEventListener('click', nextQuestion);
+answerButtons.addEventListener('click', nextQuestion);
 
 
 function startQuiz() {
   startButton.classList.add('hide');
   questionContainerEl.classList.remove('hide');
-  nextButton.classList.remove('hide');
   scoreEl.classList.remove('hide');
   timeEl.classList.remove('hide');
   answerButton1.textContent = questions[questionIndex].answers[0].text;
@@ -48,15 +46,10 @@ function nextQuestion() {
 
 function selectAnswer(event) {
   var El = event.target.getAttribute('id')
-  //console.log('El ', El)
-  //console.log("questionIndex ", questionIndex)
-  //console.log(questions[questionIndex].answers[El].correct)
   if (questions[questionIndex].answers[El].correct === true) {
-    //console.log('it works')
     count++
     nextQuestion;
   } else {
-    //timeEl.textContent = secondsLeft - 15 + " seconds left";
     secondsLeft = secondsLeft - 15;
   }
   questionIndex++;

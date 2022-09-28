@@ -61,8 +61,7 @@ body {
   background-color: green;
 }
 
-.strt-btn,
-.nxt-btn {
+.strt-btn {
   font-size: medium;
   font-weight: bold;
   padding: 20px 25px;
