@@ -8,6 +8,7 @@ var answerButton3 = document.getElementById('2');
 var answerButton4 = document.getElementById('3');
 var scoreEl = document.getElementById('score');
 var timeEl = document.getElementById('time');
+var initialsEl = document.getElementById('initials');
 var questionIndex = 0;
 var secondsLeft = 75;
 var count = 0;
@@ -67,6 +68,8 @@ function setTime() {
 }
 
 function sendMessage() {
+  scoreEl.classList.add('hide');
+  initialsEl.classList.remove('hide');
   timeEl.textContent = "Your score is " + count + "/5";
 }
 

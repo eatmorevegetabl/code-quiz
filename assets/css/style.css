@@ -88,6 +88,10 @@ body {
   float: right;
 }
 
+#initials {
+  float: left;
+}
+
 .hide {
   display: none;
 }
