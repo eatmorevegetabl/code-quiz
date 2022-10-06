@@ -9,6 +9,7 @@ var answerButton4 = document.getElementById('3');
 var scoreEl = document.getElementById('score');
 var timeEl = document.getElementById('time');
 var initialsEl = document.getElementById('initials');
+var prevScoreEl = document.getElementById('last-score');
 var questionIndex = 0;
 var secondsLeft = 75;
 var count = 0;
@@ -67,19 +68,25 @@ function setTime() {
   }, 1000);
 }
 
-function sendMessage() {
-  scoreEl.classList.add('hide');
-  timeEl.textContent = "Your score is " + count + "/5";
-  initialsEl.classList.remove('hide');
+function previousScore() {
   var storeButton = document.getElementById('store');
   storeButton.addEventListener("click", function (event) {
     event.preventDefault();
     var initialsInput = document.querySelector("#initials-input").value;
-    console.log(initialsInput);
-    localStorage.setItem("score", count);
+    localStorage.setItem("lastScore", count);
     localStorage.setItem("initials", initialsInput);
   }
   );
+}
+
+function sendMessage() {
+  scoreEl.classList.add('hide');
+  timeEl.textContent = "Your score is " + count + "/5";
+  initialsEl.classList.remove('hide');
+  previousScore();
+  var lastScore = localStorage.getItem("lastScore");
+  var initials = localStorage.getItem("initials");
+  prevScoreEl.textContent = "The previous score is " + lastScore + "/5 by " + initials;
 }
 
 var questions = [
