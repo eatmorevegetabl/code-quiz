@@ -69,8 +69,17 @@ function setTime() {
 
 function sendMessage() {
   scoreEl.classList.add('hide');
-  initialsEl.classList.remove('hide');
   timeEl.textContent = "Your score is " + count + "/5";
+  initialsEl.classList.remove('hide');
+  var storeButton = document.getElementById('store');
+  storeButton.addEventListener("click", function (event) {
+    event.preventDefault();
+    var initialsInput = document.querySelector("#initials-input").value;
+    console.log(initialsInput);
+    localStorage.setItem("score", count);
+    localStorage.setItem("initials", initialsInput);
+  }
+  );
 }
 
 var questions = [
